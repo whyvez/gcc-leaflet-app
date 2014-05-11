@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8 />
+        <title>Golden Cycling Club - Map</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+        <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
+        <style>
+            body { margin:0; padding:0; }
+            #map { position:absolute; top:0; bottom:0; width:100%; }
+        </style>
+        <style>
+            .info {
+                background:#fff;
+                position:absolute;
+                width:260px;
+                top:10px;
+                right:10px;
+                border-radius:2px;
+            }
+            .info .item {
+                display:block;
+                border-bottom:1px solid #eee;
+                padding:10px;
+                text-decoration:none;
+            }
+            .info .item small { color:#888; }
+            .info .item:hover,
+            .info .item.active { background:#f8f8f8; }
+            .info .item:last-child { border-bottom:none; }
+        </style>
+    </head>
+<body>
+    <div id='map' class='map'></div>
+    <div id='info' class='info'></div>
+
+    <script>
+        var map = L.mapbox.map('map', 'tesera.hkonkm33');
+        map.setView([51.2651, -116.9515], 13);
+        // see a full list of supported formats in the documentation:
+        // https://www.mapbox.com/mapbox.js/api/v1.6.1/l-mapbox-tilelayer/#section-tilelayer-setformat
+        var myTiles = L.mapbox.tileLayer('tesera.hkonkm33')
+            .setFormat('png256')
+            .addTo(map);
+
+
+        var myLayer = L.mapbox.featureLayer().addTo(map);
+
+        myLayer.setGeoJSON([{
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: [-116.9622, 51.2475]
+                },
+                properties: {
+                    title: 'Moonrakers Trails',
+                    description: 'Scenic smooth single track and XC.',
+                    'marker-id': 'marker-1',
+                    'marker-color': '#e9627d',
+                    'marker-symbol': 'bicycle'              
+                }
+            },
+            {
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: [-116.9833, 51.2894]
+                },
+                properties: {
+                    title: 'CBT Trails ',
+                    description: 'Fast flowy trails with jumps and berms.',
+                    'marker-id': 'marker-2',
+                    'marker-color': '#e9627d',
+                    'marker-symbol': 'bicycle'            
+                }
+            },
+            {
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: [-116.9151, 51.2834]
+                },
+                properties: {
+                    title: 'Mount Seven Trails',
+                    description: 'Downhill trails - Psychosis legacy',
+                    'marker-id': 'marker-3',
+                    'marker-color': '#e9627d',
+                    'marker-symbol': 'bicycle'              
+                }
+            },       
+            {
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: [-116.9221, 51.2786]
+                },
+                properties: {
+                    title: 'Mountain Shadows Trails',
+                    description: 'Technical single track and all mountain.',
+                    'marker-id': 'marker-4',
+                    'marker-color': '#e9627d',
+                    'marker-symbol': 'bicycle'              
+                }
+            }
+        ]);
+
+        var info = document.getElementById('info');
+
+        myLayer.eachLayer(function(marker) {
+          var link = info.appendChild(document.createElement('a'));
+          link.className = 'item';
+          link.href = '#';
+
+          link.innerHTML = marker.feature.properties.title +
+            '<br /><small>' + marker.feature.properties.description + '</small>';
+          link.onclick = function() {
+            if (/active/.test(this.className)) {
+              this.className = this.className.replace(/active/, '').replace(/\s\s*$/, '');
+            } else {
+              var siblings = info.getElementsByTagName('a');
+              for (var i = 0; i < siblings.length; i++) {
+                siblings[i].className = siblings[i].className
+                  .replace(/active/, '').replace(/\s\s*$/, '');
+              };
+              this.className += ' active';
+              
+              map.setView(marker.getLatLng (), 14);
+              marker.openPopup();
+            }
+            return false;
+          };
+        });
+        </script>
+    </body>
+</html>
