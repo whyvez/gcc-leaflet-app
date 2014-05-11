@@ -92,6 +92,10 @@
                 maxZoom: 18
             });
 
+            var myTiles = L.mapbox.tileLayer('tesera.hkonkm33')
+                .setFormat('png256')
+                .addTo(map);
+                
             function showArea(coordinates, zoom){
                 map.setView(coordinates, zoom);
                 return false;
