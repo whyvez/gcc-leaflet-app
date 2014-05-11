@@ -16,7 +16,12 @@
         <script src='http://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
         <script src='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
         <script>
-            var map = L.mapbox.map('map', 'tesera.hkonkm33');
+            var map = L.mapbox.map('map', 'tesera.hkonkm33', {
+                center: [51.2651, -116.9515],
+                zoom: 13,
+                gridLayer: false, 
+                maxZoom: 18
+            });
             L.control.locate().addTo(map);
         </script>
     </body>
