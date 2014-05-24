@@ -1,0 +1,198 @@
+body { 
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+}
+
+#gcclogo {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    height: 50px;
+    width: 50px;
+    background: url('images/gc2_logo.png') top left no-repeat;
+    background-size: 50px 50px;
+}
+
+.fa {
+    color: #586069;
+}
+
+.fa:hover {
+    color: #797E89;
+}
+
+.leaflet-top{
+    top: 60px;
+}
+
+#map { 
+    position:absolute; 
+    top:0; 
+    bottom:0; 
+    width:100%; 
+}
+
+.topbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    color: white;
+    background-color: #1B2530;
+    font-family: 'Open Sans', sans-serif;
+    z-index: 5;
+}
+
+.title {
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.title-main{
+    font-size: 1.7em;
+    color: rgb(254,67,101);
+    margin-top: 10px;
+    font-weight: 300;
+}
+
+.title-rest {
+    font-size: 0.8em;
+    font-weight: 300;
+}
+
+.btn-bar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 50px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.btn-bar-btn {
+    height: 50px;
+    width: 50px;
+    font-size: 2em;
+    background-color: rgb(254,67,101);
+}
+
+.btn-bar-btn i {
+    padding-top: 10px;
+    padding-left: 10px;
+    color: #1B2530;
+}
+
+.off-canvas {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    height: 100%;
+    width: 200px;
+    color: white;
+    padding-left: 5px;
+    padding-top: 10px;
+    background-color: #2A3B4C;
+    font-family: 'Open Sans', sans-serif;
+    z-index: 5;
+    -webkit-transform: translateX(250px);
+    -webkit-transition: 0.3s ease-in;
+}
+
+.off-canvas.expanded {
+    -webkit-transform: translateX(0);
+}
+
+.off-canvas ul {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    list-style: none;
+    padding-left: 5px;
+    margin: 0;
+    width: 200px;
+}
+
+.menu-item {
+    cursor: pointer;
+    padding: 10px;
+    border-top: 1px solid #586069;
+    border-bottom: 1px solid #1B2530;
+}
+
+.menu-item:first-child {
+    border-top: none;
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item a {
+    font-size: 1em;
+}
+
+.submenu {
+    height: 100%;
+    width: 200px;
+    background-color: #2A3B4C;
+    -webkit-transition: 0.2s ease-in;
+}
+
+.menu-level-1 {
+    z-index: 1;
+}
+
+.menu-level-2 {
+    z-index: 2;
+    -webkit-transform: translateX(250px);
+}
+
+.menu-level-3 {
+    z-index: 3;
+    -webkit-transform: translateX(250px);
+}
+
+.menu-active {
+    -webkit-transform: translateX(0);
+}
+
+#trails {
+    overflow: scroll;
+}
+.off-canvas .trail-desc {
+    display: block;
+    font-size: 0.6em;
+    padding-top: 5px;
+}
+
+.off-canvas .trail-name {
+    margin-left: 5px;
+}
+
+.trail-rating-black {
+    color: rgb(254,67,101);
+}
+
+.trail-rating-blue {
+    position: relative;
+    color: rgb(254,67,101);
+    top: 6px;
+    font-size: 2.5em;
+}
+
+.trail-rating-green, .trail-rating-road {
+    position: relative;
+    color: rgb(254,67,101);
+    top: 3px;
+    font-size: 2em;
+}

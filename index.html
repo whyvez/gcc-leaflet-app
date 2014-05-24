@@ -4,189 +4,18 @@
     <head>
         <title>Golden Cycling Club Trails</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,600,700,800,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
         <link href='http://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
         <link href='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css' rel='stylesheet' />
-        <style>
-            body { 
-                margin:0; 
-                padding:0; 
-            }
-
-            a {
-                display: inline-block;
-                text-decoration: none;
-                color: white;
-                font-size: 1.5em;
-            }
-
-            .fa {
-                color: #586069;
-            }
-
-            .fa:hover {
-                color: #797E89;
-            }
-
-            .btn {
-                position: absolute;
-                top: 0;
-                left: 0;
-                color: #E54C3C;
-                width: 25px;
-                height: 25px;
-                z-index: 10px;
-            }
-
-            #map { 
-                position:absolute; 
-                top:0; 
-                bottom:0; 
-                width:100%; 
-            }
-
-            .topbar {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 40px;
-                width: 100%;
-                padding-top: 10px;
-                padding-left: 10px;
-                color: white;
-                background-color: #1B2530;
-                font-family: 'Poiret One', cursive;
-                z-index: 5;
-            }
-
-            .leaflet-top{
-                top: 60px;
-            }
-
-            .title-main{
-                font-size: 1.7em;
-                color: #E54C3C;
-            }
-
-            .title-rest {
-                font-size: 0.8em;
-            }
-
-            .btn-bar {
-                position: absolute;
-                right: 0;
-                top: 0;
-                height: 50px;
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-
-            .btn-bar-btn {
-                height: 50px;
-                width: 50px;
-                font-size: 2em;
-                background-color: #E54C3C;
-            }
-
-            .btn-bar-btn i {
-                padding-top: 10px;
-                padding-left: 7px;
-            }
-
-            .off-canvas {
-                position: absolute;
-                top: 50px;
-                right: 0;
-                height: 100%;
-                width: 200px;
-                color: white;
-                padding-left: 5px;
-                padding-top: 10px;
-                background-color: #2A3B4C;
-                font-family: 'Poiret One', cursive;
-                z-index: 5;
-                -webkit-transform: translateX(200px);
-                -webkit-transition: 0.3s ease-in;
-            }
-
-            .off-canvas.expanded {
-                -webkit-transform: translateX(0);
-            }
-
-            .off-canvas ul {
-                position: absolute;
-                top: 50px;
-                right: 0;
-                list-style: none;
-                padding-left: 5px;
-                margin: 0;
-                width: 200px;
-            }
-
-            .menu-item {
-                padding: 10px;
-                border-top: 1px solid #586069;
-                border-bottom: 1px solid #1B2530;
-            }
-
-            .menu-item:first-child {
-                border-top: none;
-            }
-
-            .menu-item:last-child {
-                border-bottom: none;
-            }
-
-            .menu-item a {
-                font-size: 1em;
-            }
-
-            .submenu {
-                height: 100%;
-                width: 200px;
-                background-color: #2A3B4C;
-                -webkit-transition: 0.2s ease-in;
-            }
-
-            .menu-level-1 {
-                z-index: 1;
-            }
-
-            .menu-level-2 {
-                z-index: 2;
-                -webkit-transform: translateX(200px);
-            }
-
-            .menu-level-3 {
-                z-index: 3;
-                -webkit-transform: translateX(200px);
-            }
-
-            .menu-active {
-                -webkit-transform: translateX(0);
-            }
-
-            .off-canvas .trail-desc {
-                display: block;
-                font-size: 0.6em;
-                padding-top: 5px;
-            }
-
-            .off-canvas .trail-level {
-                color: #E54C3C;
-            }
-
-            .off-canvas .trail-name {
-
-            }
-        </style>
+        <link rel="stylesheet" href="./style.css">
     </head>
     <body>
         <div class="topbar">
-            <span class="title-main">Golden</span>
-            <span class="title-rest"> & area biking maps</span>
+            <div class="title">
+                <span class="title-main">Golden</span>
+                <span class="title-rest"> & area biking maps</span>
+            </div>
             <menu class="btn-bar">
                 <a class="btn-bar-btn" href="#" onClick="toggleMenu()"><i class="fa fa-ellipsis-h" ></i></a>
             </menu>
@@ -222,18 +51,21 @@
                 <li class="menu-item" onClick="toggleSubMenu('trails')"><a href="#">5-10km</a></li>
                 <li class="menu-item" onClick="toggleSubMenu('trails')"><a href="#">> 10km</a></li>
             </ul>
-            <ul id="trails" class="submenu menu-level-3">
-                <li class="menu-item" onClick="panToTrail()">
-                    <span class="trail-level">D1/2km</span>
-                    <span class="trail-name">Selkirk Slackers<span>
-                    <span class="trail-desc">Trail made for the people who live on selkirk hill. Thay always complained that it took too long for them to reach the trails.</span>
-                </li>
-            </ul>
+            <ul id="trails" class="submenu menu-level-3"></ul>
+
         </div>
+        <div id="gcclogo"></div>
         <script src='http://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
         <script src='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
         <script>
             var stack = [];
+            var ratings = {
+                'double-black': '&#9830;&#9830;',
+                'black': '&#9830;',
+                'blue': '&#9632;',
+                'green': '&#9679;',
+                'road': '&#9679;'
+            }
             var map = L.mapbox.map('map', 'tesera.hkonkm33', {
                 center: [51.2651, -116.9515],
                 zoom: 13,
@@ -263,12 +95,69 @@
                 }
             }
 
-            function panToTrail(trail){
+            var trail;
+            function panToTrail(trailIndex){
                 toggleMenu();
+                if(trail) map.removeLayer(trail);
+                trail = L.geoJson(trails.features[trailIndex], {
+                    style: function (feature) {
+                        return {color: 'rgb(233, 98, 125)'};
+                    }
+                });
                 setTimeout(function () {
-                    map.setView([51.29, -116.943], 16);
+                    map.addLayer(trail)
+                    map.fitBounds(trail.getBounds());
                 }, 500);
             }
+
+            function fetchTrails(callback){
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', '/trails.json', true);
+
+                xhr.onload = function(e) {
+                  if (this.status == 200) {
+                    var trails = JSON.parse(e.target.responseText);
+                    callback(null, trails)
+                  } //else callback(null);
+                };
+
+                xhr.send();
+            }
+
+
+            function renderTrailsDescriptions(trails){
+                var trailsMenu = document.getElementById('trails');
+                var trailItems = trails.map(function (trail, i) {
+                    var item = document.createElement('li')
+                    item.classList.add('menu-item');
+                    var spans = {};
+                    ['rating', 'name'].forEach(function (label) {
+                        var span = document.createElement('span')
+                        span.classList.add('trail-'+label);
+                        if (label == 'rating') {
+                            var rating = trail.properties['rating'].toLowerCase().split(' ').join('-');
+                            span.innerHTML = ratings[rating];
+                            span.classList.add('trail-rating-' + rating);
+                        } else {
+                            span.textContent = trail.properties[label];
+                        }
+                        item.setAttribute('onClick', 'panToTrail(' + i + ')')
+                        item.appendChild(span);
+                        spans[label] = span
+                    });
+                    return item;
+                });
+                trailItems.forEach(function (item) {
+                    trailsMenu.appendChild(item);
+                });
+            }
+
+            var trails = {};
+            fetchTrails(function (err, geojson) {
+                trails = geojson;
+                renderTrailsDescriptions(trails.features)
+            });
+
         </script>
     </body>
 </html>
