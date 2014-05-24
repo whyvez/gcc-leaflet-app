@@ -24,32 +24,27 @@
         <div id="menu" class="off-canvas">
             <a href="#"  onClick="back()"><i class="fa fa-chevron-left"></i></a>
             <ul class="menu-level-1">
-                <li class="menu-item" onClick="toggleSubMenu('bydistance')"><a href="#">all trails</a></li>
+                <li class="menu-item" onClick="toggleSubMenu('trails', 'filter-none')"><a href="#">all trails</a></li>
                 <li class="menu-item" onClick="toggleSubMenu('byarea')"><a href="#">trails by areas</a></li>
-                <li class="menu-item" onClick="toggleSubMenu('bytype')"><a href="#">trails by type</a></li>
                 <li class="menu-item" onClick="toggleSubMenu('bydifficulty')"><a href="#">trails by level</a></li>
                 <li class="menu-item" onClick="toggleSubMenu('bydistance')"><a href="#">trails by distance</a></li>
             </ul>
             <ul id="byarea" class="submenu menu-level-2">
-                <li class="menu-item" onClick="toggleSubMenu('trails')"><a href="#">CBT</a></li>
-                <li class="menu-item" onClick="toggleSubMenu('trails')"><a href="#">Mountain Shadows</a></li>
-                <li class="menu-item" onClick="toggleSubMenu('trails')"><a href="#">Moonrakers</a></li>
-                <li class="menu-item" onClick="toggleSubMenu('trails')"><a href="#">Mount 7</a></li>
-            </ul>
-            <ul id="bytype" class="submenu menu-level-2">
-                <li class="menu-item" onClick="toggleSubMenu('trails')"><a href="#">XC</a></li>
-                <li class="menu-item" onClick="toggleSubMenu('trails')"><a href="#">Downhill</a></li>
+                <li class="menu-item" onClick="toggleSubMenu('trails', 'filter-area-cbt')"><a href="#">CBT</a></li>
+                <li class="menu-item" onClick="toggleSubMenu('trails', 'filter-area-mount-shadows')"><a href="#">Mountain Shadows</a></li>
+                <li class="menu-item" onClick="toggleSubMenu('trails', 'filter-area-moonraker')"><a href="#">Moonrakers</a></li>
+                <li class="menu-item" onClick="toggleSubMenu('trails', 'filter-area-mount-seven')"><a href="#">Mount 7</a></li>
             </ul>
             <ul id="bydifficulty" class="submenu menu-level-2">
-                <li class="menu-item" onClick="toggleSubMenu('trails')"><a href="#">Green</a></li>
-                <li class="menu-item" onClick="toggleSubMenu('trails')"><a href="#">Blue</a></li>
-                <li class="menu-item" onClick="toggleSubMenu('trails')"><a href="#">Black</a></li>
-                <li class="menu-item" onClick="toggleSubMenu('trails')"><a href="#">Double Black</a></li>
+                <li class="menu-item" onClick="toggleSubMenu('trails', 'filter-rating-green')"><a href="#">Green</a></li>
+                <li class="menu-item" onClick="toggleSubMenu('trails', 'filter-rating-blue')"><a href="#">Blue</a></li>
+                <li class="menu-item" onClick="toggleSubMenu('trails', 'filter-rating-black')"><a href="#">Black</a></li>
+                <li class="menu-item" onClick="toggleSubMenu('trails', 'filter-rating-double-black')"><a href="#">Double Black</a></li>
             </ul>
             <ul id="bydistance" class="submenu menu-level-2">
-                <li class="menu-item" onClick="toggleSubMenu('trails')"><a href="#">< 5km</a></li>
-                <li class="menu-item" onClick="toggleSubMenu('trails')"><a href="#">5-10km</a></li>
-                <li class="menu-item" onClick="toggleSubMenu('trails')"><a href="#">> 10km</a></li>
+                <li class="menu-item" onClick="toggleSubMenu('trails', 'filter-distance-lt2')"><a href="#">< 2km</a></li>
+                <li class="menu-item" onClick="toggleSubMenu('trails', 'filter-distance-2to5')"><a href="#">2-5km</a></li>
+                <li class="menu-item" onClick="toggleSubMenu('trails', 'filter-distance-gt5')"><a href="#">> 5km</a></li>
             </ul>
             <ul id="trails" class="submenu menu-level-3"></ul>
 
@@ -65,7 +60,7 @@
                 'blue': '&#9632;',
                 'green': '&#9679;',
                 'road': '&#9679;'
-            }
+            };
             var map = L.mapbox.map('map', 'tesera.hkonkm33', {
                 center: [51.2651, -116.9515],
                 zoom: 13,
@@ -73,6 +68,7 @@
                 maxZoom: 18
             });
             L.control.locate().addTo(map);
+            var trailsMenu = document.getElementById('trails');
 
             function toggleMenu(){
                 var oc = document.getElementById('menu');
@@ -80,9 +76,13 @@
                 return false;
             }
 
-            function toggleSubMenu(submenu){
+            var trailsFilter;
+            function toggleSubMenu(submenu, filter){
                 var sm = document.getElementById(submenu);
                 sm.classList.toggle('menu-active');
+                if (trailsFilter) trailsMenu.classList.remove(trailsFilter);
+                trailsMenu.classList.add(filter);
+                trailsFilter = filter;
                 stack.push(sm);
                 return false;
             }
@@ -91,6 +91,7 @@
                 if (stack.length > 0){
                     var last = stack.pop();
                     last.classList.toggle('menu-active');
+                    if (trailsFilter) trailsMenu.classList.remove(trailsFilter);
                     return false;
                 }
             }
@@ -126,10 +127,31 @@
 
 
             function renderTrailsDescriptions(trails){
-                var trailsMenu = document.getElementById('trails');
                 var trailItems = trails.map(function (trail, i) {
                     var item = document.createElement('li')
                     item.classList.add('menu-item');
+                    for (var key in trail.properties) {
+                        if (trail.properties[key]) {
+                            switch(key){
+                            case 'rating':
+                                var val = trail.properties[key].toLowerCase().split(' ').join('-');
+                                item.classList.add('category-rating-' + val);
+                                break;
+                            case 'maparea':
+                                var val = trail.properties[key].toLowerCase().split(' ').join('-');
+                                item.classList.add('category-area-' + val);
+                                break;
+                            case 'distance':
+                                var val = Math.round(trail.properties[key]);
+                                if(val < 2) val = 'lt2'
+                                if(val > 2 && val < 5) val = '2to5'
+                                if(val > 5) val = 'gt5'
+                                item.classList.add('category-distance-' + val);
+                                break;
+                            }
+                        }
+                    }
+
                     var spans = {};
                     ['rating', 'name'].forEach(function (label) {
                         var span = document.createElement('span')
@@ -137,7 +159,7 @@
                         if (label == 'rating') {
                             var rating = trail.properties['rating'].toLowerCase().split(' ').join('-');
                             span.innerHTML = ratings[rating];
-                            span.classList.add('trail-rating-' + rating);
+                            span.classList.add('trail-rating', 'trail-rating-' + rating);
                         } else {
                             span.textContent = trail.properties[label];
                         }

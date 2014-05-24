@@ -87,8 +87,9 @@ a {
 }
 
 .btn-bar-btn i {
-    padding-top: 10px;
-    padding-left: 10px;
+    position: relative;
+    top: 3px;
+    left: 12px;
     color: #1B2530;
 }
 
@@ -169,6 +170,7 @@ a {
 #trails {
     overflow: scroll;
 }
+
 .off-canvas .trail-desc {
     display: block;
     font-size: 0.6em;
@@ -179,20 +181,81 @@ a {
     margin-left: 5px;
 }
 
-.trail-rating-black {
+.trail-rating{
     color: rgb(254,67,101);
+}
+
+.trail-rating-black {
+    font-size: 1.2em;
+}
+
+.trail-rating-double-black {
+    font-size: 1.2em;
+    letter-spacing: -0.3em;
 }
 
 .trail-rating-blue {
     position: relative;
-    color: rgb(254,67,101);
     top: 6px;
     font-size: 2.5em;
 }
 
 .trail-rating-green, .trail-rating-road {
     position: relative;
-    color: rgb(254,67,101);
-    top: 3px;
+    top: 4px;
     font-size: 2em;
+}
+
+#trails li {
+    display: none;
+}
+
+#trails.filter-none li {
+    display: block;
+}
+
+#trails.filter-area-cbt .category-area-cbt {
+    display: block;
+}
+
+#trails.filter-area-mount-shadows .category-area-mount-shadows {
+    display: block;
+}
+
+#trails.filter-area-moonraker .category-area-moonraker {
+    display: block;
+}
+
+#trails.filter-area-mount-seven .category-area-mount-seven {
+    display: block;
+}
+
+
+#trails.filter-rating-green .category-rating-green {
+    display: block;
+}
+
+#trails.filter-rating-blue .category-rating-blue {
+    display: block;
+}
+
+#trails.filter-rating-black .category-rating-black {
+    display: block;
+}
+
+#trails.filter-rating-double-black .category-rating-double-black {
+    display: block;
+}
+
+
+#trails.filter-distance-lt2 .category-distance-lt2 {
+    display: block;
+}
+
+#trails.filter-distance-2to5 .category-distance-2to5 {
+    display: block;
+}
+
+#trails.filter-distance-gt5 .category-distance-gt5 {
+    display: block;
 }
