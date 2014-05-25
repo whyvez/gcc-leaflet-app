@@ -1,3 +1,6 @@
+html {
+    overflow: hidden;
+}
 body { 
     margin:0;
     padding:0;
@@ -9,16 +12,6 @@ a {
     text-decoration: none;
     color: white;
     font-size: 1.5em;
-}
-
-#gcclogo {
-    position: absolute;
-    bottom: 1em;
-    left: 1em;
-    height: 50px;
-    width: 50px;
-    background: url('images/gc2_logo.png') top left no-repeat;
-    background-size: 50px 50px;
 }
 
 .fa {
@@ -34,10 +27,10 @@ a {
 }
 
 #map { 
-    position:absolute; 
-    top:0; 
-    bottom:0; 
-    width:100%; 
+    position: absolute; 
+    top: 0; 
+    bottom: 0; 
+    width: 100%; 
 }
 
 .topbar {
@@ -93,11 +86,12 @@ a {
     color: #1B2530;
 }
 
+
 .off-canvas {
     position: absolute;
     top: 50px;
     right: 0;
-    height: 100%;
+    bottom: 0;
     width: 200px;
     color: white;
     padding-left: 5px;
@@ -121,6 +115,12 @@ a {
     padding-left: 5px;
     margin: 0;
     width: 200px;
+}
+
+
+
+#menu {
+    overflow: hidden;
 }
 
 .menu-item {
@@ -167,95 +167,73 @@ a {
     -webkit-transform: translateX(0);
 }
 
+
+
 #trails {
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
-.off-canvas .trail-desc {
+.trail-desc {
     display: block;
     font-size: 0.6em;
     padding-top: 5px;
 }
 
-.off-canvas .trail-name {
+.trail-name {
     margin-left: 5px;
 }
 
-.trail-rating{
-    color: rgb(254,67,101);
-}
-
 .trail-rating-black {
-    font-size: 1.2em;
+    color: black;
+    font-size: 1.5em;
 }
 
 .trail-rating-double-black {
-    font-size: 1.2em;
+    color: black;
+    font-size: 1.5em;
     letter-spacing: -0.3em;
 }
 
 .trail-rating-blue {
+    color: blue;
     position: relative;
-    top: 6px;
-    font-size: 2.5em;
+    top: 7px;
+    font-size: 2.3em;
 }
 
 .trail-rating-green, .trail-rating-road {
+    color: green;
     position: relative;
-    top: 4px;
-    font-size: 2em;
+    top: 7px;
+    font-size: 2.3em;
 }
 
 #trails li {
     display: none;
 }
 
-#trails.filter-none li {
-    display: block;
-}
-
-#trails.filter-area-cbt .category-area-cbt {
-    display: block;
-}
-
-#trails.filter-area-mount-shadows .category-area-mount-shadows {
-    display: block;
-}
-
-#trails.filter-area-moonraker .category-area-moonraker {
-    display: block;
-}
-
-#trails.filter-area-mount-seven .category-area-mount-seven {
-    display: block;
-}
-
-
-#trails.filter-rating-green .category-rating-green {
-    display: block;
-}
-
-#trails.filter-rating-blue .category-rating-blue {
-    display: block;
-}
-
-#trails.filter-rating-black .category-rating-black {
-    display: block;
-}
-
-#trails.filter-rating-double-black .category-rating-double-black {
-    display: block;
-}
-
-
-#trails.filter-distance-lt2 .category-distance-lt2 {
-    display: block;
-}
-
-#trails.filter-distance-2to5 .category-distance-2to5 {
-    display: block;
-}
-
+#trails.filter-none li,
+#trails.filter-maparea-cbt .category-maparea-cbt,
+#trails.filter-maparea-mount-shadows .category-maparea-mount-shadows,
+#trails.filter-maparea-moonraker .category-maparea-moonraker,
+#trails.filter-maparea-mount-seven .category-maparea-mount-seven,
+#trails.filter-rating-green .category-rating-green,
+#trails.filter-rating-blue .category-rating-blue,
+#trails.filter-rating-black .category-rating-black,
+#trails.filter-rating-double-black .category-rating-double-black,
+#trails.filter-distance-lt2 .category-distance-lt2,
+#trails.filter-distance-2to5 .category-distance-2to5,
 #trails.filter-distance-gt5 .category-distance-gt5 {
     display: block;
+}
+
+#gcclogo {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    height: 50px;
+    width: 50px;
+    background: url('images/gc2_logo.png') top left no-repeat;
+    background-size: 50px 50px;
 }
