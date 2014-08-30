@@ -16,7 +16,7 @@
         Tesera Systems
     </author>
 
-    <gap:platform name="ios" />
+    <!-- <gap:platform name="ios" /> -->
     <gap:platform name="android" />
 
     <!--
