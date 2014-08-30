@@ -5,6 +5,7 @@ body {
     margin:0;
     padding:0;
     overflow: hidden;
+    width: 100%;
 }
 
 a {
@@ -196,14 +197,14 @@ a {
 }
 
 .trail-rating-blue {
-    color: blue;
+    color: #15758B;
     position: relative;
     top: 7px;
     font-size: 2.3em;
 }
 
 .trail-rating-green, .trail-rating-road {
-    color: green;
+    color: #348d08;
     position: relative;
     top: 7px;
     font-size: 2.3em;
