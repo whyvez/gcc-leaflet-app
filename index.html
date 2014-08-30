@@ -116,7 +116,7 @@
 
             function fetchTrails(callback){
                 var xhr = new XMLHttpRequest();
-                xhr.open('GET', '/trails.json', true);
+                xhr.open('GET', 'https://raw.githubusercontent.com/whyvez/gcc-leaflet-app/master/trails.json', true);
 
                 xhr.onload = function(e) {
                   if (this.status == 200) {
