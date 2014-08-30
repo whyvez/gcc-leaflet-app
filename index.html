@@ -70,7 +70,11 @@
                 gridLayer: false, 
                 maxZoom: 18
             });
-            L.control.locate().addTo(map);
+            L.control.locate({
+                locateOptions: {
+                    enableHighAccuracy: true
+                }
+            }).addTo(map);
             var trailsMenu = document.getElementById('trails');
 
             function toggleMenu(){
