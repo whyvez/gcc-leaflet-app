@@ -47,7 +47,6 @@
                 <li class="menu-item" onClick="toggleSubMenu('trails', 'filter-distance-gt5')"><a href="#">> 5km</a></li>
             </ul>
             <ul id="trails" class="submenu menu-level-3"></ul>
-
         </div>
         <div id="gcclogo"></div>
         <script src='http://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
@@ -64,12 +63,11 @@
                 'green': '&#9679;',
                 'road': '&#9679;'
             };
-            var map = L.mapbox.map('map', 'tesera.hkonkm33', {
+            var map = L.mapbox.map('map', 'tesera.jcjiekfo', {
                 center: [51.2651, -116.9515],
                 zoom: 13,
                 gridLayer: false, 
-                maxZoom: 18,
-                enableHighAccuracy: true
+                maxZoom: 18
             });
             L.control.locate({
                 locateOptions: {
