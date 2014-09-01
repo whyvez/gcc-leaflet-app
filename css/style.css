@@ -234,6 +234,6 @@ a {
     left: 1em;
     height: 50px;
     width: 50px;
-    background: url('gc2_logo.png') top left no-repeat;
+    background: url('../gc2_logo.png') top left no-repeat;
     background-size: 50px 50px;
 }
