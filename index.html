@@ -63,19 +63,43 @@
                 'green': '&#9679;',
                 'road': '&#9679;'
             };
+
+            L.RotatedMarker = L.Marker.extend({
+                options: { angle: 20 },
+                _setPos: function(pos) {
+                    L.Marker.prototype._setPos.call(this, pos);
+
+                    if(this.options.angle){
+                        if (this.options.angle < 90) {
+                            this._icon.style[L.DomUtil.TRANSFORM] += ' rotate(' + (360 - this.options.angle) + 'deg)';
+                        } else if (this.options.angle < 180){
+                            this._icon.style[L.DomUtil.TRANSFORM] += ' rotate(' + (this.options.angle - 90) + 'deg)';
+                        } else {
+                            this._icon.style[L.DomUtil.TRANSFORM] += ' rotate(' + (this.options.angle - 90) + 'deg)';
+                            this._icon.style[L.DomUtil.TRANSFORM] += ' scaleY(-1)';
+                        }
+                    }
+                }
+            });
+            L.rotatedMarker = function(pos, options) {
+                return new L.RotatedMarker(pos, options);
+            };
+
+            var marker;
+
             var map = L.mapbox.map('map', 'tesera.jcjiekfo', {
                 center: [51.2651, -116.9515],
                 zoom: 13,
                 gridLayer: false, 
                 maxZoom: 18
             });
-            L.control.locate({
-                follow: true,
-                locateOptions: {
-                    enableHighAccuracy: true,
-                    watch: true
-                }
-            }).addTo(map);
+            // L.control.locate({
+            //     follow: true,
+            //     locateOptions: {
+            //         enableHighAccuracy: true,
+            //         watch: true
+            //     }
+            // }).addTo(map);
             var trailsMenu = document.getElementById('trails');
 
             function toggleMenu(){
@@ -177,10 +201,54 @@
                 });
             }
 
-            fetchTrails(function (err, geojson) {
-                trails = geojson;
-                renderTrailsList(trails.features)
+
+
+            map.on('locationfound', function (e) {
+                if ( !map.hasLayer(marker) ){
+                     marker = L.rotatedMarker(e.latlng, {
+                      icon: L.icon({
+                        iconUrl: 'https://www.mapbox.com/maki/renders/bicycle-24@2x.png',
+                        iconSize: [24, 24],
+                      }),
+                      draggable: true
+                    });
+                    marker.addTo(map);
+                }
+                
+                if (e.heading) marker.options.angle = e.heading;
+                marker.setLatLng(e.latlng);
             });
+
+            function locate(){
+                map.locate({
+                    watch: true,
+                    setView: true,
+                    enableHighAccuracy: true
+                });
+            }
+
+            function onDeviceReady(){
+                fetchTrails(function (err, geojson) {
+                    trails = geojson;
+                    renderTrailsList(trails.features)
+                });
+
+                locate();
+            }
+
+            function onPause(){
+                map.stopLocate();
+            }
+
+            function onResume(){
+                locate();
+            }
+
+            // onDeviceReady();
+
+            document.addEventListener("deviceready", onDeviceReady, false);
+            document.addEventListener("pause", onPause, false);
+            document.addEventListener("resume", onResume, false);
 
         </script>
     </body>
