@@ -6,7 +6,7 @@
         id        = "com.tesera.gcc-app"
         version   = "1.0.0">
 
-    <name>Golden, BC Cycling Trails</name>
+    <name>Golden BC: Trail Map</name>
 
     <description>
         Mountain Biking trails for Golden, BC and area.
