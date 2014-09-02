@@ -64,6 +64,8 @@
                 'green': '&#9679;',
                 'road': '&#9679;'
             };
+            var compassWatchId;
+            var heading;
 
             L.RotatedMarker = L.Marker.extend({
                 options: { angle: 20 },
@@ -216,7 +218,7 @@
                     marker.addTo(map);
                 }
                 
-                if (e.heading) marker.options.angle = e.heading;
+                if (e.heading) marker.options.angle = heading;
                 marker.setLatLng(e.latlng);
             });
 
@@ -225,6 +227,10 @@
                     watch: true,
                     enableHighAccuracy: true
                 });
+
+                compassWatchId = navigator.compass.watchHeading(function () {
+                        heading = heading.magneticHeading;
+                }, null, { frequency: 1000 });
             }
 
             function onDeviceReady(){
@@ -238,6 +244,7 @@
 
             function onPause(){
                 map.stopLocate();
+                navigator.compass.clearWatch(compassWatchId);
             }
 
             function onResume(){
