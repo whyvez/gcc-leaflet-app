@@ -1,3 +1,6 @@
+html {
+    overflow: hidden;
+}
 body { 
     margin:0;
     padding:0;
@@ -11,10 +14,24 @@ a {
     font-size: 1.5em;
 }
 
+.fa {
+    color: #586069;
+}
+
+.fa:hover {
+    color: #797E89;
+}
+
 .leaflet-top{
     top: 60px;
 }
 
+#map { 
+    position: absolute; 
+    top: 0; 
+    bottom: 0; 
+    width: 100%; 
+}
 
 .topbar {
     position: absolute;
@@ -70,20 +87,10 @@ a {
 }
 
 
-#map { 
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: 1;
-}
-
-
 .off-canvas {
-    position: fixed;
+    position: absolute;
     top: 50px;
-    right: -250px;
+    right: 0;
     bottom: 0;
     width: 200px;
     color: white;
@@ -92,11 +99,12 @@ a {
     background-color: #2A3B4C;
     font-family: 'Open Sans', sans-serif;
     z-index: 5;
+    -webkit-transform: translateX(250px);
     -webkit-transition: 0.3s ease-in;
 }
 
 .off-canvas.expanded {
-    -webkit-transform: translate3d(-250px, 0, 0);
+    -webkit-transform: translateX(0);
 }
 
 .off-canvas ul {
@@ -108,6 +116,8 @@ a {
     margin: 0;
     width: 200px;
 }
+
+
 
 #menu {
     overflow: hidden;
@@ -224,6 +234,6 @@ a {
     left: 1em;
     height: 50px;
     width: 50px;
-    background: url('../images/gc2_logo.png') top left no-repeat;
+    background: url('../gc2_logo.png') top left no-repeat;
     background-size: 50px 50px;
 }
