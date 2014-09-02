@@ -20,13 +20,10 @@ function app(window, document, L) {
             L.Marker.prototype._setPos.call(this, pos);
 
             if(this.options.angle){
-                if (this.options.angle < 90) {
+                if (this.options.angle < 45) {
                     this._icon.style[L.DomUtil.TRANSFORM] += ' rotate(' + (360 - this.options.angle) + 'deg)';
-                } else if (this.options.angle < 180){
-                    this._icon.style[L.DomUtil.TRANSFORM] += ' rotate(' + (this.options.angle - 90) + 'deg)';
                 } else {
-                    this._icon.style[L.DomUtil.TRANSFORM] += ' rotate(' + (this.options.angle - 90) + 'deg)';
-                    this._icon.style[L.DomUtil.TRANSFORM] += ' scaleY(-1)';
+                    this._icon.style[L.DomUtil.TRANSFORM] += ' rotate(' + (this.options.angle - 45) + 'deg)';
                 }
             }
         }
@@ -149,10 +146,8 @@ function app(window, document, L) {
         if ( !map.hasLayer(marker) ){
              marker = L.rotatedMarker(e.latlng, {
               icon: L.icon({
-                iconUrl: 'https://www.mapbox.com/maki/renders/bicycle-24@2x.png',
-                iconSize: [24, 24],
-              }),
-              draggable: true
+                iconUrl: '/images/location28.png'
+              })
             });
             marker.addTo(map);
         }
@@ -161,20 +156,20 @@ function app(window, document, L) {
         marker.setLatLng(e.latlng);
 
         
-        if (!viewSet) {
-            map.stopLocate();
-            map.locate({
-                watch: true,
-                setView: false,
-                enableHighAccuracy: true
-            });
-            viewSet = true;
-        }
+        // if (!viewSet) {
+        //     // map.stopLocate();
+        //     map.locate({
+        //         watch: true,
+        //         setView: false,
+        //         enableHighAccuracy: true
+        //     });
+        //     viewSet = true;
+        // }
     });
 
     function locate(){
         map.locate({
-            watch: false,
+            watch: true,
             setView: true,
             enableHighAccuracy: true
         });
