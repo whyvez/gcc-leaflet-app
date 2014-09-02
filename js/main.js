@@ -167,6 +167,11 @@ function app(window, document, L) {
         // }
     });
 
+    function reset(){
+        var mapEl = document.getElementById('map');
+        document.body.style.width = mapEl.offsetWidth + 'px';
+    }
+
     function locate(){
         map.locate({
             watch: true,
@@ -182,6 +187,7 @@ function app(window, document, L) {
         });
 
         locate();
+        reset();
     }
 
     function onPause(){
@@ -193,7 +199,7 @@ function app(window, document, L) {
         locate();
     }
 
-    // onDeviceReady();
+    onDeviceReady();
 
     document.addEventListener("deviceready", onDeviceReady, false);
     document.addEventListener("pause", onPause, false);
