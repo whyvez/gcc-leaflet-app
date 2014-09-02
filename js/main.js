@@ -146,7 +146,7 @@ function app(window, document, L) {
         if ( !map.hasLayer(marker) ){
              marker = L.rotatedMarker(e.latlng, {
               icon: L.icon({
-                iconUrl: '/images/location28.png'
+                iconUrl: './images/location28.png'
               })
             });
             marker.addTo(map);
