@@ -199,7 +199,7 @@ function app(window, document, L) {
         locate();
     }
 
-    onDeviceReady();
+    // onDeviceReady();
 
     document.addEventListener("deviceready", onDeviceReady, false);
     document.addEventListener("pause", onPause, false);
