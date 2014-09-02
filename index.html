@@ -218,7 +218,7 @@
                     marker.addTo(map);
                 }
                 
-                if (e.heading) marker.options.angle = heading;
+                if (heading) marker.options.angle = heading;
                 marker.setLatLng(e.latlng);
             });
 
@@ -229,7 +229,7 @@
                 });
 
                 compassWatchId = navigator.compass.watchHeading(function () {
-                        heading = heading.magneticHeading;
+                    heading = heading.magneticHeading;
                 }, null, { frequency: 1000 });
             }
 
