@@ -1,10 +1,12 @@
 html {
     overflow: hidden;
+    height: 100%;
 }
 body { 
     margin:0;
     padding:0;
     overflow: hidden;
+    height: 100%;
 }
 
 a {
@@ -27,14 +29,13 @@ a {
 }
 
 #map { 
-    position: absolute; 
-    top: 0; 
-    bottom: 0; 
+    position: relative; 
     width: 100%; 
+    height: 100%;
 }
 
 .topbar {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     height: 50px;
@@ -90,7 +91,7 @@ a {
 .off-canvas {
     position: absolute;
     top: 50px;
-    right: 0;
+    right: -250px;
     bottom: 0;
     width: 200px;
     color: white;
@@ -99,12 +100,11 @@ a {
     background-color: #2A3B4C;
     font-family: 'Open Sans', sans-serif;
     z-index: 5;
-    -webkit-transform: translateX(250px);
     -webkit-transition: 0.3s ease-in;
 }
 
 .off-canvas.expanded {
-    -webkit-transform: translateX(0);
+    -webkit-transform: translate3d(-250px, 0, 0);
 }
 
 .off-canvas ul {
