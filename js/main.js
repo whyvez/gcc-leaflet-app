@@ -187,7 +187,7 @@ function app(window, document, L) {
         });
 
         locate();
-        reset();
+        // reset();
     }
 
     function onPause(){
