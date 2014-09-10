@@ -180,12 +180,13 @@ function app(window, document, L) {
         });
     }
 
-    function onDeviceReady(){
-        fetchTrails(function (err, geojson) {
-            trails = geojson;
-            renderTrailsList(trails.features);
-        });
+    function onDeviceReady(){;
+        // fetchTrails(function (err, geojson) {
+        //     trails = geojson;
+        //     renderTrailsList(trails.features);
+        // });
 
+        renderTrailsList(window.trails.features);
         locate();
         // reset();
     }
@@ -199,7 +200,7 @@ function app(window, document, L) {
         locate();
     }
 
-    // onDeviceReady();
+    //onDeviceReady();
 
     document.addEventListener("deviceready", onDeviceReady, false);
     document.addEventListener("pause", onPause, false);
@@ -214,7 +215,7 @@ function app(window, document, L) {
 
 }
 
-var app;
+
 function init(){
-    app = app(window, document, L);
+    window.app = app(window, document, L);
 }
