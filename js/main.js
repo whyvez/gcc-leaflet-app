@@ -176,7 +176,7 @@ function app(window, document, L, bikeTrails) {
         locate();
     }
 
-    onDeviceReady();
+    //onDeviceReady();
 
     document.addEventListener("deviceready", onDeviceReady, false);
     document.addEventListener("pause", onPause, false);
