@@ -99,12 +99,14 @@ a {
     background-color: #2A3B4C;
     font-family: 'Open Sans', sans-serif;
     z-index: 5;
-    -webkit-transform: translateX(250px);
-    -webkit-transition: 0.3s ease-in;
+    display: none;
+    /*-webkit-transform: translateX(250px);
+    -webkit-transition: 0.3s ease-in;*/
 }
 
 .off-canvas.expanded {
-    -webkit-transform: translateX(0);
+    display: block;
+    /*-webkit-transform: translateX(0);*/
 }
 
 .off-canvas ul {
