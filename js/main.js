@@ -1,6 +1,6 @@
 'use strict';
 
-function app(window, document, L) {
+function app(window, document, L, bikeTrails) {
     var menuStack = [];
     var trailsFilter = '';
     var trail = {};
@@ -13,6 +13,7 @@ function app(window, document, L) {
         'road': '&#9679;'
     };
     var marker;
+    var trails = bikeTrails;
 
     L.RotatedMarker = L.Marker.extend({
         options: { angle: 20 },
@@ -82,19 +83,19 @@ function app(window, document, L) {
         }, 1000);
     }
 
-    function fetchTrails(callback){
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/api/trails.json', true);
+    // function fetchTrails(callback){
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open('GET', '/api/trails.json', true);
 
-        xhr.onload = function(e) {
-          if (this.status == 200) {
-            var trails = JSON.parse(e.target.responseText);
-            callback(null, trails)
-          }
-        };
+    //     xhr.onload = function(e) {
+    //       if (this.status == 200) {
+    //         var trails = JSON.parse(e.target.responseText);
+    //         callback(null, trails)
+    //       }
+    //     };
 
-        xhr.send();
-    }
+    //     xhr.send();
+    // }
 
     function renderTrailsList(trails){
         trails.forEach(function (trail, i) {
@@ -186,7 +187,7 @@ function app(window, document, L) {
         //     renderTrailsList(trails.features);
         // });
 
-        renderTrailsList(window.trails.features);
+        renderTrailsList(trails.features);
         locate();
         // reset();
     }
@@ -217,5 +218,5 @@ function app(window, document, L) {
 
 
 function init(){
-    window.app = app(window, document, L);
+    window.app = app(window, document, L, window.trails);
 }
