@@ -83,20 +83,6 @@ function app(window, document, L, bikeTrails) {
         }, 1000);
     }
 
-    // function fetchTrails(callback){
-    //     var xhr = new XMLHttpRequest();
-    //     xhr.open('GET', '/api/trails.json', true);
-
-    //     xhr.onload = function(e) {
-    //       if (this.status == 200) {
-    //         var trails = JSON.parse(e.target.responseText);
-    //         callback(null, trails)
-    //       }
-    //     };
-
-    //     xhr.send();
-    // }
-
     function renderTrailsList(trails){
         trails.forEach(function (trail, i) {
             var item = document.createElement('li')
@@ -157,21 +143,16 @@ function app(window, document, L, bikeTrails) {
         marker.setLatLng(e.latlng);
 
         
-        // if (!viewSet) {
-        //     // map.stopLocate();
-        //     map.locate({
-        //         watch: true,
-        //         setView: false,
-        //         enableHighAccuracy: true
-        //     });
-        //     viewSet = true;
-        // }
+        if (!viewSet) {
+            map.stopLocate();
+            map.locate({
+                watch: true,
+                setView: false,
+                enableHighAccuracy: true
+            });
+            viewSet = true;
+        }
     });
-
-    function reset(){
-        var mapEl = document.getElementById('map');
-        document.body.style.width = mapEl.offsetWidth + 'px';
-    }
 
     function locate(){
         map.locate({
@@ -182,14 +163,8 @@ function app(window, document, L, bikeTrails) {
     }
 
     function onDeviceReady(){;
-        // fetchTrails(function (err, geojson) {
-        //     trails = geojson;
-        //     renderTrailsList(trails.features);
-        // });
-
         renderTrailsList(trails.features);
         locate();
-        // reset();
     }
 
     function onPause(){
@@ -201,7 +176,7 @@ function app(window, document, L, bikeTrails) {
         locate();
     }
 
-    //onDeviceReady();
+    onDeviceReady();
 
     document.addEventListener("deviceready", onDeviceReady, false);
     document.addEventListener("pause", onPause, false);
@@ -212,7 +187,7 @@ function app(window, document, L, bikeTrails) {
         toggleSubMenu: toggleSubMenu,
         back: back,
         showTrail: showTrail
-    }
+    };
 
 }
 
