@@ -178,7 +178,7 @@ a {
 
 .trail-desc {
     display: block;
-    font-size: 0.6em;
+    font-size: 0.8em;
     padding-top: 5px;
 }
 
@@ -236,6 +236,7 @@ a {
     left: 1em;
     height: 50px;
     width: 50px;
-    background: url('../gc2_logo.png') top left no-repeat;
+    background: url('../images/gc2_logo.png') top left no-repeat;
     background-size: 50px 50px;
+    cursor: pointer;
 }

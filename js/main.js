@@ -109,8 +109,9 @@ function app(window, document, L, bikeTrails) {
             }
 
             ['rating', 'name'].forEach(function (label) {
-                var span = document.createElement('span')
+                var span = document.createElement('span');
                 span.classList.add('trail-'+label);
+
                 if (label == 'rating') {
                     var rating = trail.properties['rating'].toLowerCase().split(' ').join('-');
                     span.innerHTML = ratings[rating];
@@ -118,10 +119,16 @@ function app(window, document, L, bikeTrails) {
                 } else {
                     span.textContent = trail.properties[label];
                 }
+
                 item.setAttribute('onClick', 'app.showTrail(' + i + ')')
                 item.appendChild(span);
                 spans[label] = span
             });
+
+            var p = document.createElement('p');
+            p.classList.add('trail-desc');
+            p.textContent = trail.properties.desc;
+            item.appendChild(p);
 
             trailsMenu.appendChild(item);
         });
@@ -176,7 +183,7 @@ function app(window, document, L, bikeTrails) {
         locate();
     }
 
-    //onDeviceReady();
+    onDeviceReady();
 
     document.addEventListener("deviceready", onDeviceReady, false);
     document.addEventListener("pause", onPause, false);
