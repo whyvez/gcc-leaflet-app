@@ -78,6 +78,7 @@
     <icon src="res/icon/android/72.png"           gap:platform="android"    gap:qualifier="hdpi" />
     <icon src="res/icon/android/96.png"           gap:platform="android"    gap:qualifier="xhdpi" />
 
+    <icon src="res/icon/ios/icon.png" width="57" height="57" gap:platform="ios" />
     <!-- iOS 7.0+ -->
     <!-- iPhone / iPod Touch  -->
     <icon src="res/icon/ios/icon-60.png" width="60" height="60" gap:platform="ios" />
