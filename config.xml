@@ -101,7 +101,9 @@
     <!-- iPad Spotlight and Settings Icon -->
     <icon src="res/ios/icon-50.png" width="50" height="50" gap:platform="ios" />
     <icon src="res/ios/icon-50@2x.png" width="100" height="100" gap:platform="ios" />
-
+    <!-- other template icons -->
+    <icon src="res/ios/icon-57.png" width="57" height="57" gap:platform="ios" />
+    <icon src="res/ios/icon-57@2x.png" width="114" height="114" gap:platform="ios" />
     <!-- Define app splash screen for each platform. -->
     <!-- <gap:splash src="res/screen/android/screen-ldpi-portrait.png"       gap:platform="android" gap:qualifier="port-ldpi" />
     <gap:splash src="res/screen/android/screen-mdpi-portrait.png"       gap:platform="android" gap:qualifier="port-mdpi" />
