@@ -183,12 +183,14 @@ function app(window, document, L, bikeTrails) {
         locate();
     }
 
-    onDeviceReady();
-
-    document.addEventListener("deviceready", onDeviceReady, false);
-    document.addEventListener("pause", onPause, false);
-    document.addEventListener("resume", onResume, false);
-
+    if ('cordova' in window) {
+        document.addEventListener("deviceready", onDeviceReady, false);
+        document.addEventListener("pause", onPause, false);
+        document.addEventListener("resume", onResume, false);
+    } else {
+        onDeviceReady();
+    }
+    
     return {
         toggleMenu: toggleMenu,
         toggleSubMenu: toggleSubMenu,
